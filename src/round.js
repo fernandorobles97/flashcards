@@ -24,7 +24,13 @@ const takeTurn = (guess, round) => {
   }
 };
 
+const calculatePercentCorrect = (round) => {
+  let percent = (round.turns - round.incorrectGuesses.length) / round.turns * 100
+  return parseInt(percent)
+};
+
 module.exports = {
   createRound,
-  takeTurn
+  takeTurn,
+  calculatePercentCorrect
 }

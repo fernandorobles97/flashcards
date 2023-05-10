@@ -4,7 +4,7 @@ const expect = chai.expect;
 const { createDeck, countCards } = require('../src/deck');
 const { createCard } = require('../src/card');
 const { sampleData } = require('../src/sample-data');
-const { createRound } = require('../src/round');
+const { createRound, calculatePercentCorrect } = require('../src/round');
 const { takeTurn } = require('../src/round');
 
 describe('round', function() {
@@ -74,5 +74,18 @@ describe('round', function() {
     expect(round.incorrectGuesses[0]).to.equal(1) 
     expect(round.incorrectGuesses[1]).to.equal(2) 
     expect(round.incorrectGuesses.length).to.equal(2)
-  })
+  });
+
+  it('should be a function', function() {
+    expect(calculatePercentCorrect).to.be.a('function');
+  });
+
+  it('should calculate and return percentage of correct guesses', function() {
+    const incorrectGuess = takeTurn('array', round);
+    const incorrectGuess2 = takeTurn('object', round);
+    const correctGuess = takeTurn('mutator method', round);
+    const percentage = calculatePercentCorrect(round);
+
+    expect(percentage).to.equal(33)
+  });
 });
