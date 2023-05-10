@@ -1,3 +1,5 @@
+const { evaluateGuess } = require("./turn");
+
 const createRound = (deck) => {
   return {
     deck: deck,
@@ -9,7 +11,17 @@ const createRound = (deck) => {
 
 const takeTurn = (guess, round) => {
   round.turns += 1;
-  return round
+  const turn = evaluateGuess(guess, round.currentCard.correctAnswer);
+  if (turn === 'correct!') {
+    round.deck.shift();
+    round.currentCard = round.deck[0];
+    return 'correct!';
+  } else {
+    round.incorrectGuesses.push(round.currentCard.id);
+    round.deck.shift();
+    round.currentCard = round.deck[0];
+    return 'incorrect!';
+  }
 };
 
 module.exports = {

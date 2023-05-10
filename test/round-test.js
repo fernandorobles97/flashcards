@@ -47,8 +47,32 @@ describe('round', function() {
   });
 
   it('should update the turns count', function() {
-    const turn = takeTurn('array', round);
+    const incorrectGuess = takeTurn('array', round);
      
     expect(round.turns).to.equal(1);
   });
+
+  it('should update currentCard property to be the next card', function() {
+    const incorrectGuess = takeTurn('array', round);
+
+    expect(round.currentCard).to.equal(round.deck[0])
+  });
+
+  it('should evaluate if guess is correct or not and return feedback', function() {
+    const incorrectGuess = takeTurn('array', round);
+    const correctGuess = takeTurn('array', round);
+
+    expect(incorrectGuess).to.equal('incorrect!')
+    expect(correctGuess).to.equal('correct!')
+  });
+
+  it('should store incorrect guesses, via specific card\'s ID, in incorrectGuesses array', function() {
+    const incorrectGuess = takeTurn('array', round);
+    const incorrectGuess2 = takeTurn('object', round);
+    const correctGuess = takeTurn('mutator method', round);
+ 
+    expect(round.incorrectGuesses[0]).to.equal(1) 
+    expect(round.incorrectGuesses[1]).to.equal(2) 
+    expect(round.incorrectGuesses.length).to.equal(2)
+  })
 });
