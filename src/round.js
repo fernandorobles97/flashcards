@@ -29,8 +29,13 @@ const calculatePercentCorrect = (round) => {
   return parseInt(percent)
 };
 
+const endRound = (round) => {
+  return `** Round over! ** You answered ${calculatePercentCorrect(round)}% of the questions correctly!`
+};
+
 module.exports = {
   createRound,
   takeTurn,
-  calculatePercentCorrect
+  calculatePercentCorrect,
+  endRound
 }
