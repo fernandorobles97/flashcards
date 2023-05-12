@@ -1,4 +1,3 @@
-/* eslint-disable */
 const sampleData = [{
   "id": 1,
   "question": "What allows you to define a set of related information using key-value pairs?",
@@ -14,8 +13,7 @@ const sampleData = [{
   "question": "What type of prototype method directly modifies the existing array?",
   "answers": ["mutator method", "accessor method", "iteration method"],
   "correctAnswer": "mutator method"
-}]
-/* eslint-enable */
+}];
 
 module.exports = {
   sampleData 
